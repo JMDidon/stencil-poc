@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+  <style>*, *::before, *::after { font-family: sans-serif; }</style>
+  <script type="module" src="/build/test-stencil.esm.js"></script>
+  <script nomodule src="/build/test-stencil.js"></script>
+</head>
+
+<body>
+  <m-modal id="modal"></m-modal>
+  <m-button id="open-modal">Open modal</m-button>
+
+  <script>
+  	const modal = document.querySelector('#modal');
+  	const openModalBtn = document.querySelector('#open-modal');
+  	let open = false;
+  	
+  	openModalBtn.addEventListener('click', () => {
+  		open = true;
+  		modal.setAttribute('open', open);
+  	});
+
+    modal.addEventListener('dismiss', () => { 
+      open = false;
+      modal.setAttribute('open', open);
+    });
+  </script>
+</body>
+
+</html>
