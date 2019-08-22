@@ -5,19 +5,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
-  <style>*, *::before, *::after { font-family: sans-serif; }</style>
-  <script type="module" src="/build/test-stencil.esm.js"></script>
-  <script nomodule src="/build/test-stencil.js"></script>
+  <style>
+    *, *::before, *::after {
+      font-family: sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-flow: column wrap;
+      margin: 0;
+    }
+
+    .stencil, .frameworks {
+      height: 50vh;
+    }
+
+    .stencil {
+      padding: 1em;
+    }
+
+    .frameworks {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .iframe {
+      width: 50vw;
+      height: 100%;
+      border: 1px solid #666;
+    }
+  </style>
+  <script type="module" src="/build/stencil-poc.esm.js"></script>
+  <script nomodule src="/build/stencil-poc.js"></script>
 </head>
 
 <body>
-  <m-modal id="modal"></m-modal>
-  <m-button id="open-modal">Open modal</m-button>
+  <main class="stencil">
+    <h1>A nice Stencil app</h1>
+    <m-modal id="modal"></m-modal>
+    <m-button id="open-modal">Open modal</m-button>
+  </main>
+
+  <aside class="frameworks">
+    <iframe id="ng-iframe" class="iframe" src="http://localhost:4200"></iframe>
+    <iframe id="vue-iframe" class="iframe" src="http://localhost:8080"></iframe>
+  </aside>
 
   <script>
   	const modal = document.querySelector('#modal');
   	const openModalBtn = document.querySelector('#open-modal');
-  	let open = false;
+  	const ngIframe = document.querySelector('#ng-iframe');
+    const vueIframe = document.querySelector('#vue-iframe');
+    let open = false;
   	
   	openModalBtn.addEventListener('click', () => {
   		open = true;

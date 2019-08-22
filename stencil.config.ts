@@ -2,7 +2,8 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
 export const config: Config = {
-  namespace: 'test-stencil',
+  generateDistribution: true,
+  namespace: 'stencil-poc',
   outputTargets: [
     {
       type: 'dist',
