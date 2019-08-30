@@ -13,6 +13,9 @@ export namespace Components {
   interface MModal {
     'open': boolean;
   }
+  interface MPanel {
+    'open': boolean;
+  }
 }
 
 declare global {
@@ -29,9 +32,16 @@ declare global {
     prototype: HTMLMModalElement;
     new (): HTMLMModalElement;
   };
+
+  interface HTMLMPanelElement extends Components.MPanel, HTMLStencilElement {}
+  var HTMLMPanelElement: {
+    prototype: HTMLMPanelElement;
+    new (): HTMLMPanelElement;
+  };
   interface HTMLElementTagNameMap {
     'm-button': HTMLMButtonElement;
     'm-modal': HTMLMModalElement;
+    'm-panel': HTMLMPanelElement;
   }
 }
 
@@ -41,10 +51,15 @@ declare namespace LocalJSX {
     'onDismiss'?: (event: CustomEvent<any>) => void;
     'open'?: boolean;
   }
+  interface MPanel extends JSXBase.HTMLAttributes<HTMLMPanelElement> {
+    'onDismiss'?: (event: CustomEvent<any>) => void;
+    'open'?: boolean;
+  }
 
   interface IntrinsicElements {
     'm-button': MButton;
     'm-modal': MModal;
+    'm-panel': MPanel;
   }
 }
 

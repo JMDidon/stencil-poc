@@ -1,8 +1,10 @@
 <template>
   <div class="hello">
     <h1>A nice Vue app</h1>
-    <m-button v-on:click="open">Open modal</m-button>
-    <m-modal :open="isOpen" @dismiss="dismiss"></m-modal>
+    <m-button v-on:click="openModal">Open modal</m-button>
+    <m-button v-on:click="openPanel">Open panel</m-button>
+    <m-modal :open="isModalOpen" @dismiss="dismiss"></m-modal>
+    <m-panel :open="isPanelOpen" @dismiss="dismiss"></m-panel>
   </div>
 </template>
 
@@ -11,16 +13,26 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
-  isOpen: boolean = false;
+  isModalOpen: boolean = false;
+  isPanelOpen: boolean = false;
 
-  open() {
-    this.isOpen = true;
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  openPanel() {
+    this.isPanelOpen = true;
   }
 
   dismiss() {
-    this.isOpen = false;
+    this.isModalOpen = false;
+    this.isPanelOpen = false;
   }
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  m-button {
+    margin: 1em;
+  }
+</style>

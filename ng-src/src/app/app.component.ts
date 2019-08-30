@@ -6,14 +6,20 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	public isOpen: boolean = false;
+	public isModalOpen: boolean = false;
+  public isPanelOpen: boolean = false;
 
-  	@HostListener('dismiss', ['$event.target'])
-  	onDismiss() {
-  		this.isOpen = false;
-  	}
+  @HostListener('dismiss', ['$event.target'])
+  onModalDismiss() {
+    this.isModalOpen = false;
+    this.isPanelOpen = false;
+  }
 
-	open() {
-		this.isOpen = true;
+	openModal() {
+		this.isModalOpen = true;
 	}
+
+  openPanel() {
+    this.isPanelOpen = true;
+  }
 }

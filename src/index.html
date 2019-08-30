@@ -36,6 +36,10 @@
       height: 100%;
       border: 1px solid #666;
     }
+
+    m-button {
+      margin: 1em;
+    }
   </style>
   <script type="module" src="/build/stencil-poc.esm.js"></script>
   <script nomodule src="/build/stencil-poc.js"></script>
@@ -45,7 +49,11 @@
   <main class="stencil">
     <h1>A nice Stencil app</h1>
     <m-modal id="modal"></m-modal>
+    <m-panel id="panel">
+      <div slot="content">Content ?</div>
+    </m-panel>
     <m-button id="open-modal">Open modal</m-button>
+    <m-button id="open-panel">Open panel</m-button>
   </main>
 
   <aside class="frameworks">
@@ -55,19 +63,32 @@
 
   <script>
   	const modal = document.querySelector('#modal');
+    const panel = document.querySelector('#panel');
   	const openModalBtn = document.querySelector('#open-modal');
+    const openPanelBtn = document.querySelector('#open-panel');
   	const ngIframe = document.querySelector('#ng-iframe');
     const vueIframe = document.querySelector('#vue-iframe');
-    let open = false;
+    let openModal = false;
+    let openPanel = false;
   	
   	openModalBtn.addEventListener('click', () => {
-  		open = true;
+  		openModal = true;
   		modal.setAttribute('open', open);
   	});
 
     modal.addEventListener('dismiss', () => { 
-      open = false;
-      modal.setAttribute('open', open);
+      openModal = false;
+      modal.setAttribute('open', openModal);
+    });
+
+    openPanelBtn.addEventListener('click', () => {
+      openPanel = true;
+      panel.setAttribute('open', openPanel);
+    });
+
+    panel.addEventListener('dismiss', () => {
+      openPanel = false;
+      panel.setAttribute('open', openPanel);
     });
   </script>
 </body>
