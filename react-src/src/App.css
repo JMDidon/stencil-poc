@@ -1,0 +1,8 @@
+*, *::before, *::after {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+m-button {
+  margin: 1em;
+}

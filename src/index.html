@@ -32,7 +32,7 @@
     }
 
     .iframe {
-      width: 50vw;
+      width: calc(100vw / 3);
       height: 100%;
       border: 1px solid #666;
     }
@@ -59,6 +59,7 @@
   <aside class="frameworks">
     <iframe id="ng-iframe" class="iframe" src="http://localhost:4200"></iframe>
     <iframe id="vue-iframe" class="iframe" src="http://localhost:8080"></iframe>
+    <iframe id="react-iframe" class="iframe" src="http://localhost:3000"></iframe>
   </aside>
 
   <script>
@@ -70,13 +71,13 @@
     const vueIframe = document.querySelector('#vue-iframe');
     let openModal = false;
     let openPanel = false;
-  	
+
   	openModalBtn.addEventListener('click', () => {
   		openModal = true;
   		modal.setAttribute('open', open);
   	});
 
-    modal.addEventListener('dismiss', () => { 
+    modal.addEventListener('dismiss', () => {
       openModal = false;
       modal.setAttribute('open', openModal);
     });
