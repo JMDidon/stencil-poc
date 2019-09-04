@@ -49,10 +49,12 @@
   <main class="stencil">
     <h1>A nice Stencil app</h1>
     <m-modal id="modal"></m-modal>
+    <m-complex-modal id="complex-modal"></m-complex-modal>
     <m-panel id="panel">
       <div slot="content">Content ?</div>
     </m-panel>
     <m-button id="open-modal">Open modal</m-button>
+    <m-button id="open-complex-modal">Open complex modal</m-button>
     <m-button id="open-panel">Open panel</m-button>
   </main>
 
@@ -64,22 +66,43 @@
 
   <script>
   	const modal = document.querySelector('#modal');
+    const complexModal = document.querySelector('#complex-modal');
     const panel = document.querySelector('#panel');
-  	const openModalBtn = document.querySelector('#open-modal');
+
+    const openModalBtn = document.querySelector('#open-modal');
+    const openComplexModalBtn = document.querySelector('#open-complex-modal');
     const openPanelBtn = document.querySelector('#open-panel');
-  	const ngIframe = document.querySelector('#ng-iframe');
-    const vueIframe = document.querySelector('#vue-iframe');
+
     let openModal = false;
+    let openComplexModal = false;
     let openPanel = false;
 
-  	openModalBtn.addEventListener('click', () => {
-  		openModal = true;
-  		modal.setAttribute('open', open);
-  	});
+    const content = {
+      title: 'Complex modal',
+      content: 'Some random content',
+      footer: 'Click the button:',
+    };
+
+    openModalBtn.addEventListener('click', () => {
+      openModal = true;
+      modal.setAttribute('open', open);
+    });
 
     modal.addEventListener('dismiss', () => {
       openModal = false;
       modal.setAttribute('open', openModal);
+    });
+
+  	openComplexModalBtn.addEventListener('click', () => {
+  		openComplexModal = true;
+  		complexModal.setAttribute('open', open);
+      complexModal.contents = content;
+  	});
+
+    complexModal.addEventListener('dismiss', () => {
+      openComplexModal = false;
+      complexModal.setAttribute('open', openComplexModal);
+      complexModal.contents = {};
     });
 
     openPanelBtn.addEventListener('click', () => {

@@ -6,18 +6,29 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	public isModalOpen: boolean = false;
-  public isPanelOpen: boolean = false;
+	private isModalOpen: boolean = false;
+  private isComplexModalOpen: boolean = false;
+  private isPanelOpen: boolean = false;
+  private contents = {
+    title: 'A "complex" modal in Angular',
+    content: 'With nice content',
+    footer: 'Close me plz',
+  };
 
   @HostListener('dismiss', ['$event.target'])
   onModalDismiss() {
     this.isModalOpen = false;
+    this.isComplexModalOpen = false;
     this.isPanelOpen = false;
   }
 
 	openModal() {
 		this.isModalOpen = true;
 	}
+
+  openComplexModal() {
+    this.isComplexModalOpen = true;
+  }
 
   openPanel() {
     this.isPanelOpen = true;

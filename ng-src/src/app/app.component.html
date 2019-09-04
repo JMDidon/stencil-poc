@@ -1,5 +1,7 @@
 <h1>A nice Angular app</h1>
 <m-modal [open]="isModalOpen"></m-modal>
+<m-complex-modal [open]="isComplexModalOpen" [contents]="contents"></m-complex-modal>
 <m-panel [open]="isPanelOpen"></m-panel>
 <m-button (click)="openModal()">Open modal</m-button>
+<m-button (click)="openComplexModal()">Open complex modal</m-button>
 <m-button (click)="openPanel()">Open panel</m-button>

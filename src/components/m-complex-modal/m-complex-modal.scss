@@ -1,0 +1,14 @@
+.m-complex-modal {
+	border: 1px solid #666;
+	border-radius: $unit / 2;
+	box-shadow: 0 2px 10px 1px #666;
+
+	&__content {
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+		height: 10 * $unit;
+		min-width: 10 * $unit;
+	}
+}

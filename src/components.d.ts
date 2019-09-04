@@ -6,10 +6,16 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  ComplexModalContents,
+} from './components/m-complex-modal/m-complex-modal';
 
 export namespace Components {
   interface MButton {}
+  interface MComplexModal {
+    'contents': ComplexModalContents;
+    'open': boolean;
+  }
   interface MModal {
     'open': boolean;
   }
@@ -27,6 +33,12 @@ declare global {
     new (): HTMLMButtonElement;
   };
 
+  interface HTMLMComplexModalElement extends Components.MComplexModal, HTMLStencilElement {}
+  var HTMLMComplexModalElement: {
+    prototype: HTMLMComplexModalElement;
+    new (): HTMLMComplexModalElement;
+  };
+
   interface HTMLMModalElement extends Components.MModal, HTMLStencilElement {}
   var HTMLMModalElement: {
     prototype: HTMLMModalElement;
@@ -40,6 +52,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'm-button': HTMLMButtonElement;
+    'm-complex-modal': HTMLMComplexModalElement;
     'm-modal': HTMLMModalElement;
     'm-panel': HTMLMPanelElement;
   }
@@ -47,6 +60,11 @@ declare global {
 
 declare namespace LocalJSX {
   interface MButton extends JSXBase.HTMLAttributes<HTMLMButtonElement> {}
+  interface MComplexModal extends JSXBase.HTMLAttributes<HTMLMComplexModalElement> {
+    'contents'?: ComplexModalContents;
+    'onDismiss'?: (event: CustomEvent<any>) => void;
+    'open'?: boolean;
+  }
   interface MModal extends JSXBase.HTMLAttributes<HTMLMModalElement> {
     'onDismiss'?: (event: CustomEvent<any>) => void;
     'open'?: boolean;
@@ -58,6 +76,7 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'm-button': MButton;
+    'm-complex-modal': MComplexModal;
     'm-modal': MModal;
     'm-panel': MPanel;
   }
