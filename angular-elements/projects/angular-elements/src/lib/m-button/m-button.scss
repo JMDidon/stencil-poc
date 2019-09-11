@@ -1,0 +1,13 @@
+@import '../assets/variables';
+
+.m-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3 * $unit;
+	padding: .33 * $unit  $unit;
+	background-color: #6666DD;
+	color: #FAFAFA;
+	border-radius: 3px;
+	border: none;
+}

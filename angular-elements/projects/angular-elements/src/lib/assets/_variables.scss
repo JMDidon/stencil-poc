@@ -1,0 +1,19 @@
+$unit: 1em;
+$transition-duration: 0.2s;
+$transition-easing: cubic-bezier(
+    0.4,
+    0,
+    0.2,
+    1
+); // cf. https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
+
+$z-index-list: (
+  'main': 0,
+  'overlay': 10,
+  'spinner': 20,
+  'dropdown': 30,
+  'toolbar': 40,
+  'menu': 50,
+  'modal': 60,
+  'toast': 70
+);

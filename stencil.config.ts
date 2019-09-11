@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
 export const config: Config = {
+  minifyJs: true,
   generateDistribution: true,
   namespace: 'stencil-poc',
   outputTargets: [
