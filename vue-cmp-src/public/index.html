@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link href="https://frontends.contentsquare.com/@cs-materials/common@0.35.4/build/cs-materials-common.css" rel="stylesheet" />
+    <script src="https://frontends.contentsquare.com/@cs-materials/common@0.35.4/build/cs-materials-common.esm.js" type="module"></script>
+
+    <!--
+      If you want to try with a local version of cs-materials,
+      run `npx serve packages/common -p 3003 -C -n` in `/path/to/workspace/app-cs-materials`
+      and use the following script instead of the one above:
+
+      <script type="module">
+        import { applyPolyfills, defineCustomElements } from "http://localhost:3003/loader/index.js";
+
+        applyPolyfills().then(() => {
+          defineCustomElements(window);
+        });
+      </script>
+    -->
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

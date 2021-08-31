@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Vue2 default</h1>
+    <h1>Vue composition API</h1>
     <m-button v-on:click="openModal">Open modal</m-button>
     <m-button v-on:click="openComplexModal">Open complex modal</m-button>
     <m-button v-on:click="openPanel">Open panel</m-button>
@@ -16,14 +16,14 @@
     <m-panel :open="isPanelOpen" @dismiss="dismiss"></m-panel>
 
     <csm-universal-select
-        :placeholder="'Can\'t see me'"
-        @csmUniversalSelectChange="onChange">
+      :placeholder="'Can\'t see me'"
+      @csmUniversalSelectChange="onChange">
       <csm-universal-select-group :name="'Object-based/no .prop'" slot="content">
         <template v-for="(item, i) in items">
           <csm-universal-select-item
-              :key="i"
-              :value="item"
-              :label="item.value"
+            :key="i"
+            :value="item"
+            :label="item.value"
           ></csm-universal-select-item>
         </template>
       </csm-universal-select-group>
@@ -48,9 +48,9 @@
       <csm-universal-select-group :name="'Primitive-based/no .prop'" slot="content">
         <template v-for="(item, i) in items">
           <csm-universal-select-item
-              :key="i"
-              :value="item.id"
-              :label="item.value"
+            :key="i"
+            :value="item.id"
+            :label="item.value"
           ></csm-universal-select-item>
         </template>
       </csm-universal-select-group>
@@ -78,60 +78,69 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+<script lang="js">
+import { ref } from '@vue/composition-api';
 
-@Component({
-  data: () => {
+export default {
+  setup() {
+    const isModalOpen = ref(false);
+    const isComplexModalOpen = ref(false);
+    const isPanelOpen = ref(false);
+    const items = ref([
+      { id: 0, value: 'val 0' },
+      { id: 1, value: 'val 1' },
+      { id: 2, value: 'val 2' },
+      { id: 3, value: 'val 3' },
+      { id: 4, value: 'val 4' },
+    ]);
+    const selectedItem = ref(items.value[2]);
+
+    function openModal() {
+      isModalOpen.value = true;
+    }
+
+    function openComplexModal() {
+      isComplexModalOpen.value = true;
+    }
+
+    function openPanel() {
+      isPanelOpen.value = true;
+    }
+
+    function dismiss() {
+      isModalOpen.value = false;
+      isComplexModalOpen.value = false;
+      isPanelOpen.value = false;
+    }
+
+    function onChange(item) {
+      console.log('onChange triggered!', item);
+      console.log('selectedItem?', selectedItem.value);
+    }
+
     return {
+      openModal,
+      isModalOpen,
+      openComplexModal,
+      isComplexModalOpen,
+      openPanel,
+      isPanelOpen,
+      dismiss,
+      onChange,
       modalContents: {
         title: 'A "complex" modal in Vue',
         content: 'With nice content',
         footer: 'Close me plz',
       },
-      items: [
-        { id: 0, value: 'val 0' },
-        { id: 1, value: 'val 1' },
-        { id: 2, value: 'val 2' },
-        { id: 3, value: 'val 3' },
-        { id: 4, value: 'val 4' },
-      ],
-      selectedItem: { id: 2, value: 'val 2' },
-    };
-  },
-})
-export default class HelloWorld extends Vue {
-  isModalOpen: boolean = false;
-  isComplexModalOpen: boolean = false;
-  isPanelOpen: boolean = false;
-  modalContents = {};
-
-  openModal() {
-    this.isModalOpen = true;
-  }
-
-  openComplexModal() {
-    this.isComplexModalOpen = true;
-  }
-
-  openPanel() {
-    this.isPanelOpen = true;
-  }
-
-  dismiss() {
-    this.isModalOpen = false;
-    this.isComplexModalOpen = false;
-    this.isPanelOpen = false;
-  }
-
-  onChange(item: any) {
-    console.log('onChange triggered!', item);
+      items,
+      selectedItem,
+    }
   }
 }
 </script>
 
-<style scoped lang="scss">
-  m-button {
-    margin: 1em;
-  }
+<style scoped lang="css">
+m-button {
+  margin: 1em;
+}
 </style>
